@@ -239,7 +239,7 @@ function getInput() {
         Pile currMove;
         repeat until currMove.count == x {
             Println("");
-            Println("Input " + x + " space-separated card indices:");
+            Println("Input " + x + " line-separated card indices:");
             repeat x {
                 Card card = Pick From players[turn].hand;
                 currMove = currMove + card;
@@ -262,7 +262,7 @@ function getInput() {
     int x = prevMove.count;
     repeat until currMove.count == x {
         Println("");
-        Println("Input " + x + " space-separated card indices: ");
+        Println("Input " + x + " line-separated card indices: ");
         repeat x {
             Card card = Pick From players[turn].hand;
             currMove = currMove + card;
