@@ -284,21 +284,22 @@ Round {
     // pass
     if (currMove == null) {
         turn = (turn + 1) % nPlayers;
-    } else {
-        // play move
-        foreach (card: currMove) {
-            players[turn] Play card To discard;
-        }
-
-        // check if game ends
-        if (players[turn].hand.count == 0) {
-            Println("Player " + (turn + 1) + " wins!");
-            End;
-        }
-
-        // update turn, controlPlayer, prevMove
-        controlPlayer = turn;
-        prevMove = currMove;
-        turn = (turn + 1) % nPlayers;
+        Pass;
     }
+    
+    // play move
+    foreach (card: currMove) {
+        players[turn] Play card To discard;
+    }
+
+    // check if game ends
+    if (players[turn].hand.count == 0) {
+        Println("Player " + (turn + 1) + " wins!");
+        End;
+    }
+
+    // update turn, controlPlayer, prevMove
+    controlPlayer = turn;
+    prevMove = currMove;
+    turn = (turn + 1) % nPlayers;
 }

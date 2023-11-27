@@ -32,9 +32,9 @@ setup_stmt: statement | if_stmt | foreach_stmt | repeat_stmt;
 func_stmt: statement | func_if_stmt | func_foreach_stmt | func_repeat_stmt | return_stmt;
 func_loop_stmt: statement | func_loop_if_stmt | func_foreach_stmt | func_repeat_stmt | 
     return_stmt | break_stmt | continue_stmt;
-round_stmt: statement | round_if_stmt | round_foreach_stmt | round_repeat_stmt | end_stmt;
+round_stmt: statement | round_if_stmt | round_foreach_stmt | round_repeat_stmt | end_stmt | pass_stmt;
 round_loop_stmt: statement | round_loop_if_stmt | round_foreach_stmt | round_repeat_stmt | 
-    end_stmt | break_stmt | continue_stmt;
+    end_stmt | pass_stmt | break_stmt | continue_stmt;
 loop_stmt: statement | loop_if_stmt | foreach_stmt | repeat_stmt | break_stmt | continue_stmt;
 
 declare_stmt: DATA_TYPE declare_body SEMICOLON;
@@ -92,6 +92,7 @@ break_stmt: BREAK SEMICOLON;
 continue_stmt: CONTINUE SEMICOLON;
 return_stmt: RETURN SEMICOLON | RETURN expression SEMICOLON;
 end_stmt: END SEMICOLON;
+pass_stmt: PASS SEMICOLON;
 function_call: DISPBRD OPEN_PAR CLOSE_PAR | IDENTIFIER OPEN_PAR actual_params? CLOSE_PAR;
 actual_params: expression (COMMA expression)*;
 
@@ -162,6 +163,7 @@ ENUM: 'enum';
 COMBI : 'Combination';
 ROUND : 'Round';
 END : 'End';
+PASS: 'Pass';
 DISPBRD : 'DisplayBoard';
 
 //I-O

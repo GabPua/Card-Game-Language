@@ -352,18 +352,6 @@ public class CardBaseListener implements CardListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConst_stmt(CardParser.Const_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitConst_stmt(CardParser.Const_stmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAssign_body(CardParser.Assign_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}

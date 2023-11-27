@@ -584,6 +584,15 @@ class CardListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CardParser#pass_stmt.
+    def enterPass_stmt(self, ctx:CardParser.Pass_stmtContext):
+        pass
+
+    # Exit a parse tree produced by CardParser#pass_stmt.
+    def exitPass_stmt(self, ctx:CardParser.Pass_stmtContext):
+        pass
+
+
     # Enter a parse tree produced by CardParser#function_call.
     def enterFunction_call(self, ctx:CardParser.Function_callContext):
         pass

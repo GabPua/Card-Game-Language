@@ -287,16 +287,6 @@ public interface CardListener extends ParseTreeListener {
 	 */
 	void exitDeclare_content(CardParser.Declare_contentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CardParser#const_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterConst_stmt(CardParser.Const_stmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CardParser#const_stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitConst_stmt(CardParser.Const_stmtContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link CardParser#assign_body}.
 	 * @param ctx the parse tree
 	 */
