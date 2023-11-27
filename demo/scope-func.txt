@@ -16,6 +16,8 @@ function f1() {
         f2();
     }
     Println(x); // in f1
+    return;
+    Println(y); // will not error because of return
 }
 
 function f2() {

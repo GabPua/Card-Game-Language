@@ -176,7 +176,8 @@ class CardVisitor(ParseTreeVisitor):
             check = self.visit(ctx.getChild(2))
             if check is None: continue
             if not isinstance(check, tuple): continue
-            assert check[0] == 'End'
+            assert check[0] == 'End' or check[0] == 'Pass'
+            if check[0] == 'Pass': continue
             func_nested_control_cnt.pop()
             func_control_list.pop()
             func_table_list.pop()
@@ -216,7 +217,7 @@ class CardVisitor(ParseTreeVisitor):
             check = self.visit(ctx.getChild(i))
             if check is None: continue
             if not isinstance(check, tuple): continue
-            assert check[0] == 'End'
+            assert check[0] == 'End' or check[0] == 'Pass'
             return check
 
 
@@ -226,7 +227,7 @@ class CardVisitor(ParseTreeVisitor):
             check = self.visit(ctx.getChild(i))
             if check is None: continue
             if not isinstance(check, tuple): continue
-            assert check[0] in ['End', 'break', 'continue']
+            assert check[0] in ['End', 'Pass', 'break', 'continue']
             return check
 
 
@@ -956,7 +957,7 @@ class CardVisitor(ParseTreeVisitor):
             if check is None: continue
             if not isinstance(check, tuple): continue
             if check[0] == 'break': break
-            if check[0] == 'End': return check
+            if check[0] == 'End' or check[0] == 'Pass': return check
 
 
     # Visit a parse tree produced by CardParser#round_repeat_stmt.
@@ -975,7 +976,7 @@ class CardVisitor(ParseTreeVisitor):
                 if check is None: continue
                 if not isinstance(check, tuple): continue
                 if check[0] == 'break': break
-                if check[0] == 'End':
+                if check[0] == 'End' or check[0] == 'Pass':
                     func_nested_control_cnt[nested_func_cnt] -= 1
                     func_control_list[nested_func_cnt].pop()
                     return check
@@ -995,7 +996,7 @@ class CardVisitor(ParseTreeVisitor):
             _, value = self.visit(ctx.getChild(0))
             if not isinstance(check, tuple): continue
             if check[0] == 'break': break
-            if check[0] == 'End': return check
+            if check[0] == 'End' or check[0] == 'Pass': return check
 
 
     # Visit a parse tree produced by CardParser#round_loop_if_stmt.
@@ -1079,6 +1080,10 @@ class CardVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by CardParser#end_stmt.
     def visitEnd_stmt(self, ctx:CardParser.End_stmtContext):
         return ('End', None)
+    
+    # Visit a parse tree produced by CardParser#pass_stmt.
+    def visitPass_stmt(self, ctx:CardParser.Pass_stmtContext):
+        return ('Pass', None)
 
 
     # Visit a parse tree produced by CardParser#function_call.
