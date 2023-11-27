@@ -23,8 +23,8 @@ Round {
     Println("");
 
     Println("Precedence & Associativity");
-    int pemdas = 6 * 9 / 3 + 2;
-    Println("6 * 9 / 3 + 2 = " + pemdas);
+    int pemdas = 6 + 9 / 3 + 2;
+    Println("6 + 9 / 3 + 2 = " + pemdas);
 
     int pemdas2 = (6 + 9)/(3 + 2);
     Println("(6 + 9)/(3 + 2) = " + pemdas2);
@@ -34,6 +34,16 @@ Round {
     int modulo = 4 % 2;
     Println("4 % 2 = " + modulo);
     Println("");
+
+    //Println("Division Error");
+    //quotient = product / (sum - sum);
+    //Println(product + " / (" + sum + " - " + sum + ") = " + quotient);
+    //Println("");
+
+    //Println("Modulo Error");
+    //modulo = product % (sum - sum);
+    //Println(product + " / (" + sum + " - " + sum + ") = " + modulo);
+    //Println("");
 
     Println("Card Operations");
     Pile a, b;

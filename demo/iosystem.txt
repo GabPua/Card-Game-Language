@@ -18,12 +18,12 @@ Round {
     Print("What is your name? ");
     string name = GetString;
     Println("Hello " + name + "!");
-    Println(" ");
+    Println("");
 
     Print("What is your favorite number? ");
     int number = GetInt;
     Println("Your favorite number is " + number + ".");
-    Println(" ");
+    Println("");
 
     Deal 13 From deck To player;
     //foreach (card: player.hand) {
@@ -34,7 +34,7 @@ Round {
     Card chosen = Pick From player.hand;
     Println("Your chosen card by index is:");
     Println(chosen.value + " of " + chosen.suit);
-    Println(" ");
+    Println("");
 
     End;
 }

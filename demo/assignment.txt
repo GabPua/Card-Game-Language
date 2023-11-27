@@ -34,7 +34,7 @@ Round {
 	c1.object_att = c2;
 
 	Card new_card = {num : 5, str : "hello"};
-	new_card = {num : 6, str : "world"};
+	//new_card = {num : 6, str : "world"};
 	
 	End;
 }

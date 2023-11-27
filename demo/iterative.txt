@@ -21,23 +21,27 @@ Round {
 
     int i = 1;
     repeat until (i == 5) {
+        Println("Player " + i + " draws a card.");
         players[i] Draw 1 From deck;
         i = i + 1;
         if (i==4) {
             break;
         }
     }
+    Println("");
 
     int j = 1;
     repeat until (j == 4) {
-        Println(j);
-        j = j + 1;
         if (j==2) {
+            j = j + 1;
             continue;
             //break;
         }
+        Println("Player " + j + " draws a card.");
         players[j] Draw 1 From deck;
+        j = j + 1;
     }
+    Println("");
 
     Println("Player 1 cards:");
     foreach (card: players[1].hand) {

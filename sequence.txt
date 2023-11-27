@@ -1,0 +1,11 @@
+primitives - primitive.txt
+assignment - assignment.txt
+arithmetic - arithmetic.txt
+logic - logic.txt
+type checking - types.txt
+conditional - conditionals.txt
+iterative - iterative.txt
+io - iosystem.txt
+function - functions.txt
+scope - scope.txt, scope-func.txt
+collections - colletions.txt

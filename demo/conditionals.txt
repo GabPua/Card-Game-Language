@@ -24,5 +24,10 @@ Round{
 	else
         	Println("x is not greater than 5");
 
+	// dangling else
+	if (y < 10) 
+		if (x > 20) Println("x is greater than 20 and y is less than 10");
+	else Println("Value of y: " + y);
+
 	End;
 }

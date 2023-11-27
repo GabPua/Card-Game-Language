@@ -1132,6 +1132,7 @@ class CardVisitor(ParseTreeVisitor):
         try:
             idx = int(input())
             if idx >= len(entity): raise
+            if idx < 0: raise
             return entity[idx]
         except:
             return None

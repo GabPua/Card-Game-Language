@@ -29,7 +29,7 @@ Round{
 	p1 = p2 + c1 + c2 + c2; //pile + card
 	Println("empty pile + 3 cards: " + p1.count);
 
-	p1 = p2 + c1 + c2 + c2; //pile + card
+	p1 = p1 + c1 + c2 + c2; //pile + card
 	Println("pile with 3 cards + 3 cards: " + p1.count);
 
 	p1 = c1 * i3; //card multiplication
@@ -63,7 +63,7 @@ Round{
 	//c1.int_att = "five";
 	//c1.str_att = 67;
 	//c1 = c1 + c2;
-        //c1 = c1 + i2;
+    //c1 = c1 + i2;
 	//c1 = c1 + s2;
 	//c1 = c1 * i3;
 	//p1 = c1 * c2;

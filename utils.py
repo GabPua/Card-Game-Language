@@ -181,6 +181,7 @@ class Pile:
         try:
             idx = int(input())
             if idx >= self.count: raise
+            if idx < 0: raise
             return self.__dict__['cards'][idx]
         except Exception:
             return None

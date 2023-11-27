@@ -10,6 +10,11 @@ int bool;
 int playerScore;
 string playerName;
 
+// redeclaration
+// int bool;
+// int playerScore;
+// string playerName;
+
 deck = Combination {
     suit: suits,
     value: values
