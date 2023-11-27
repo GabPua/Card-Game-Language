@@ -1,0 +1,40 @@
+enum suits {
+    CLUBS, SPADES, HEARTS, DIAMONDS
+}
+
+int values[13] = {2,3,4,5,6,7,8,9,10,10,10,10,11};
+Pile deck, discard;
+
+Player player;
+
+deck = Combination {
+    suit: suits,
+    value: values
+};
+
+Round {
+    Shuffle deck;
+
+    Print("What is your name? ");
+    string name = GetString;
+    Println("Hello " + name + "!");
+    Println(" ");
+
+    Print("What is your favorite number? ");
+    int number = GetInt;
+    Println("Your favorite number is " + number + ".");
+    Println(" ");
+
+    Deal 13 From deck To player;
+    //foreach (card: player.hand) {
+    //    Println(card.value + " of " + card.suit);
+    //}
+
+    Println("Choose a card by index from 0 to 12:");
+    Card chosen = Pick From player.hand;
+    Println("Your chosen card by index is:");
+    Println(chosen.value + " of " + chosen.suit);
+    Println(" ");
+
+    End;
+}

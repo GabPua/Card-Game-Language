@@ -1,0 +1,56 @@
+enum suits {
+    CLUBS, SPADES, HEARTS, DIAMONDS
+}
+
+int values[13] = {2,3,4,5,6,7,8,9,10,10,10,10,11};
+Pile deck, discard;
+Player player;
+
+int bool;
+int playerScore;
+string playerName;
+
+deck = Combination {
+    suit: suits,
+    value: values
+};
+
+Round {
+    Shuffle deck;
+
+    bool = 0;  // false
+    Println(bool);
+    bool = 1;  // true
+    Println(bool);
+    Println(" ");
+    playerName = "John Doe";
+
+    // deal cards
+    Deal 2 From deck To player;
+    Println("Player Cards:");
+    foreach (card: player.hand) {
+        Println(card.value + " of " + card.suit);
+        playerScore = card.value + playerScore;
+    }
+    Println("My name is " + playerName + ".");
+    Println("My card score is " + playerScore + ".");
+    Println(" ");
+
+    Shuffle deck;
+    
+    // deal another card
+    playerName = "Jane Doe";
+    playerScore = 0;
+    Deal 1 From deck To player;
+    Println("New Player Cards:");
+    foreach (card: player.hand) {
+        Println(card.value + " of " + card.suit);
+        playerScore = card.value + playerScore;
+    }
+
+    Println("My new name is " + playerName + ".");
+    Println("My new card score is " + playerScore + ".");
+    Println(" ");
+
+    End;
+}

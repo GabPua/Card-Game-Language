@@ -1,0 +1,90 @@
+enum suits {
+    CLUBS, SPADES, HEARTS, DIAMONDS
+}
+
+string values[13] = {"3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2"};
+
+// Card, Pile, Player, Action, array, enum
+
+Pile deck, discard;
+Player players[2];
+
+deck = Combination {
+    suit: suits,
+    value: values
+};
+
+function getValueIndex(string value) {
+    int idx = 0;
+    repeat 13 {
+        if (value == values[idx]) return idx;
+        idx = idx + 1;
+    }
+    return -1;
+}
+
+function getSuitIndex(string suit) {
+    if (suit == suits.CLUBS) return 0;
+    if (suit == suits.SPADES) return 1;
+    if (suit == suits.HEARTS) return 2;
+    if (suit == suits.DIAMONDS) return 3;
+    return -1;
+}
+
+function compareCards(Card card1, Card card2) {
+    // return 1 if card1 is better
+    int valueIdx1 = getValueIndex(card1.value);
+    int valueIdx2 = getValueIndex(card2.value);
+    if (valueIdx1 != valueIdx2) return valueIdx1 > valueIdx2;
+
+    int suitIdx1 = getSuitIndex(card1.suit);
+    int suitIdx2 = getSuitIndex(card2.suit);
+    return suitIdx1 > suitIdx2;
+}
+
+Round {
+    Shuffle deck;
+
+    Deal 3 From deck To players[1];
+    foreach (card: players[1].hand) {
+        Println(card.value + " of " + card.suit);
+    }
+
+    Println("Choose card for comparison from 0 to 2:");
+    Card card1 = Pick From players[1].hand;
+    players[1] Play card1 To discard;
+    Println("Card 1 is:");
+    Println(card1.value + " of " + card1.suit);
+    Println(" ");
+
+    foreach (card: players[1].hand) {
+        Println(card.value + " of " + card.suit);
+    }
+
+    Println("Choose card for comparison from 0 to 1:");
+    Card card2 = Pick From players[1].hand;
+    players[1] Play card2 To discard;
+    Println("Card 2 is:");
+    Println(card2.value + " of " + card2.suit);
+    Println(" ");
+
+    Println("Comparing both cards:");
+    int result = compareCards(card1, card2);
+    if (result == 1) {
+        Println("Card 1 is better.");
+    } else {
+        Println("Card 2 is better.");
+    }
+
+    Action action = { 
+        from: playerNo, 
+        card: players[playerNo].hand[0],
+        others: {
+            option: option
+        }
+    };
+    ActionStack.push(action);
+    // players[turn] Play card To discard;
+
+    End;
+}

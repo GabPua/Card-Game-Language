@@ -30,12 +30,13 @@ Round {
 
     int j = 1;
     repeat until (j == 4) {
-        Println("Value of j: " + j);
-        players[j] Draw 1 From deck;
+        Println(j);
         j = j + 1;
         if (j==2) {
             continue;
+            //break;
         }
+        players[j] Draw 1 From deck;
     }
 
     Println("Player 1 cards:");
@@ -51,25 +52,26 @@ Round {
         Println(card.value + " of " + card.suit);
         player2Score = card.value + player2Score;
     }
-    Println("Player 1 score: "+player1Score);
+    Println("Player 2 score: "+player2Score);
     Println(" ");
 
     int n = 0;
     repeat 3 {
+        n = n + 1;
         if (n==2) {
             break;
         }
         Println("Break Step: "+n);
-        n = n + 1;
+        
     }
 
     int m = 0;
     repeat 3 {
+        m = m + 1;
         if (m==1) {
             continue;
         }
         Println("Continue Step: "+m);
-        m = m + 1;
     }
 
     End;

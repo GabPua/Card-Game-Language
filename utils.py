@@ -83,8 +83,8 @@ class Pile:
             else: self.__dict__['cards'] = [item]
             self.__dict__['count'] = 1
         elif isinstance(item, Pile):
-            if mode == 'mult': self.__dict__['cards'] = deepcopy(item.__dict__['cards'])
-            else: self.__dict__['cards'] = item.__dict__['cards']
+            if mode == 'mul': self.__dict__['cards'] = deepcopy(item.__dict__['cards'])
+            else: self.__dict__['cards'].extend(item.__dict__['cards'])
             self.__dict__['count'] = item.count
         else:
             raise TypeError('Incompatible type, expected Card or Pile')
