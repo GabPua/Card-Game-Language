@@ -1,0 +1,176 @@
+enum COLORS { RED, BLUE, GREEN, YELLOW}
+
+string special_vals[3] = {"skip", "reverse", "+2"};
+string nonzero_vals[9] = {"1", "2" , "3", "4", "5", "6", "7", "8", "9"};
+string wild_vals[2] = {"wild", "+4"};
+
+Pile zero = Combination{value: {"0"} , color: COLORS};
+Pile nonzero = Combination{value: nonzero_vals , color: COLORS};
+Pile special = Combination{value: special_vals , color: COLORS};
+Pile wild = Combination{value: wild_vals , color: {"WILD"}};
+
+Pile deck, discard;
+deck = zero + nonzero * 2 + special * 2 +  wild* 4;
+
+
+int nPlayers = 4;
+Player players[nPlayers];
+int turn = 0;
+int direction = 1;
+int draws = 0;
+int skip = 0;
+
+
+function  to_string(Card card){
+	return (card.value + " " + card.color);
+}
+
+function print_hand(Player player){
+	int i = 0;
+	foreach(card: player.hand){
+		Println(i + " - " + to_string(card));
+		i = i + 1;
+	}
+}
+
+function DisplayBoard() {
+   	Println("Turn of Player " + (turn + 1));
+
+	
+
+    	int i = 0;
+   	repeat (nPlayers) {
+     		if (turn != i) {
+            		Println("");
+            		Println("Player " + (i + 1) + " has " + players[i].hand.count + " cards.");
+        	}
+        	i = i + 1;
+    	}
+    
+	
+	Card current = discard[0];
+	Println("");
+    	Println("Top of Discard Pile: " + to_string(current));
+	
+
+    	Println("");
+    	Println("Your cards:");
+    	print_hand(players[turn]);
+
+}
+
+function get_move(Player player) {
+	Println("Type card index or higher number to PASS: ");
+	return Pick From player.hand;
+}
+
+function is_legal_move(Card move){
+	Card current = discard[0];
+	if(current.value == move.value)
+		return 1;
+	if(current.color == move.color or move.color == "WILD" or current.color == "WILD")
+		return 1;
+	return 0;
+}
+
+function handle_special_actions(Card card){
+	if(card.color == "WILD"){
+		Println("Pick a color (RED, GREEN, BLUE, YELLOW): ");		
+		string chosen_color = GetString;
+		
+		repeat until (chosen_color == COLORS.RED or chosen_color == COLORS.GREEN 
+				or chosen_color == COLORS.BLUE or chosen_color == COLORS.YELLOW){
+			Println("Invalid input. Pick a color (RED, GREEN, BLUE, YELLOW): ");
+			chosen_color = GetString;
+		}
+		card.color = chosen_color;	
+	}
+	if(card.value == "reverse"){
+		direction = direction * -1;
+	}
+	if(card.value == "skip"){
+		skip = 1;
+	}
+	if(card.value == "+2"){
+		Println("HELLOO");
+		skip = 1;
+		draws = 2;
+	}
+	if(card.value == "+4"){
+		Println("HELLOOOO");
+		skip = 1;
+		draws = 4;
+	}
+}
+
+
+
+Shuffle deck;
+Deal 7 From deck To players;
+Move deck[0] From deck To discard;
+handle_special_actions(discard[0]);
+
+Round{
+	
+	Player current_player = players[turn];
+
+	if(draws > 0){
+		Println("You draw " + draws + " cards.");
+		current_player Draw draws From deck;
+	}
+	draws = 0;
+
+
+	DisplayBoard();
+	if(skip == 1){
+		Println("");
+		Println("Your turn has been SKIPPED. Press ENTER to continue.");
+		GetString;
+		skip = 0;
+	}
+	else{
+
+
+
+	Card chosen = get_move(current_player);
+
+	repeat until (chosen == null){
+	
+		if(is_legal_move(chosen)){
+			handle_special_actions(chosen);
+			current_player Play chosen To discard;
+			break;
+		}
+		else{
+			Println("Not a valid move");
+			chosen = get_move(current_player);
+		}
+
+	}
+
+	if(chosen == null){
+		Println("You have passed on your turn and must draw 1 card.");
+		current_player Draw From deck;
+		Card drawn = current_player.hand[0];
+		Println("You drew " + to_string(drawn));
+		if(is_legal_move(drawn)){
+			Println("The card you drew was playable and has been played.");
+			current_player Play drawn To discard;
+		}
+		Println("Press ENTER to continue.");
+		GetString;
+	}
+
+
+	if(current_player.hand.count == 0){
+		Println("PLAYER " + (turn + 1) + " WINS!");
+		End;
+	}
+	
+	}
+	
+	
+	turn = (turn + direction) % nPlayers;
+
+	//python main.py demo/uno.txt
+}

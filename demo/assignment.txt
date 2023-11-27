@@ -1,0 +1,40 @@
+int i;
+string s;
+Card c1, c2;
+Pile p;
+Player player;
+
+int int_arr[5];
+
+Round {
+	i = 5;
+	//i = "5";
+	
+	s = "5";
+	//s = 5;
+
+	c1.int_att = 5;
+	//c1.int_att = "5";
+
+	c1.str_att = "hi";
+	//c1.str_att = 5;
+
+	c1.card_att = c2;
+	c1.pile_att = p;
+	c1.player_att = player;
+	
+	c1.pile_att = c2 * 5;
+
+	
+	int_arr[0] = 1;
+	//int_arr = {1,2,3,4,5};
+
+	int new_arr[5] = {1,2,3,4,5};
+
+	c1.object_att = c2;
+
+	Card new_card = {num : 5, str : "hello"};
+	new_card = {num : 6, str : "world"};
+	
+	End;
+}

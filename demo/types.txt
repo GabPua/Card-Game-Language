@@ -1,0 +1,62 @@
+int i1, i2 = 2, i3 = 4;
+string s1 = "4", s2 = "hello", s3 = "world";
+Card c1, c2;
+c1.int_att = 5;
+c1.str_att = "five";
+
+Pile p1, p2;
+
+Player player1, player2;
+
+
+Round{
+
+	Println("int operation: i1 + i2 + i3 = " + (i1 + i2 + i3));
+	Println("string concatenation : s1 + s2 + s3 = " + (s1 + s2 + s3));
+	Println("int + string: i2 + s2 = " + (i2 + s2));
+	Println("int attribute + int: c1.int_att + i3 = " + (c1.int_att + i3));
+	Println("str attribute + int: c1.str_att + i3 = " + (c1.str_att + i3));
+	Println("int mult: i2 * i3 = " + (i2*i3));
+
+	
+	
+
+	//Object operations
+	p1 = c1 + c2; //card + card
+	p1 = p1 + c1 + c2 + c2; //pile + card
+	p1 = c1 * i3; //card multiplication
+	p1 = p1 * i3; //pile multiplication
+	p1 = (p2 + c1) * i3;
+
+	//Actions
+	Deal i3 From p1 To player1;
+	
+	
+
+	//Incompatible Type Errors
+	//Println("string mult: s2 * i3 = " + (s2*i3));
+	//c1.int_att = "five";
+	//c1.str_att = 67;
+	//c1 = c1 + c2;
+        //c1 = c1 + i2;
+	//c1 = c1 + s2;
+	//c1 = c1 * i3;
+	//p1 = c1 * c2;
+	//p1 = c1 * p2;
+	//p1 = p1 * p2;
+	//p1 = p1 * s3;
+	//Deal s3 From p1 To player1;
+	//Deal i3 From c1 To player1;
+	//Deal i3 From p1 To p2;
+	//if(i3 == s1)
+
+
+
+	//Cannot print object types
+	//Println(p1);
+	//Println(c1);
+
+	
+
+	End;
+}
