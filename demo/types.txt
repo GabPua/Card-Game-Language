@@ -3,6 +3,7 @@ string s1 = "4", s2 = "hello", s3 = "world";
 Card c1, c2;
 c1.int_att = 5;
 c1.str_att = "five";
+c1.x = 62376;
 
 Pile p1, p2;
 
@@ -23,13 +24,37 @@ Round{
 
 	//Object operations
 	p1 = c1 + c2; //card + card
-	p1 = p1 + c1 + c2 + c2; //pile + card
+	Println("card + card: " + p1.count);
+	
+	p1 = p2 + c1 + c2 + c2; //pile + card
+	Println("empty pile + 3 cards: " + p1.count);
+
+	p1 = p2 + c1 + c2 + c2; //pile + card
+	Println("pile with 3 cards + 3 cards: " + p1.count);
+
 	p1 = c1 * i3; //card multiplication
+	Println("card * 4: " + p1.count);
+
+
 	p1 = p1 * i3; //pile multiplication
+	Println("pile with 4 cards * 4: " + p1.count);
+
 	p1 = (p2 + c1) * i3;
+	Println("(empty pile + card) * 4: " + p1.count);
 
 	//Actions
+	Println("dealing 4 to player");
 	Deal i3 From p1 To player1;
+	Shuffle player1.hand;
+	Println("player hand count: " + player1.hand.count);
+	Println("Peeking 2 from player hand:");
+
+	Peek 4 From player1.hand;
+
+	foreach(card : player1.hand){
+		Println(card.int_att + " - " + card.str_att);
+	}
+	
 	
 	
 
